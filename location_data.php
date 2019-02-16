@@ -53,7 +53,7 @@ and open the template in the editor.
         $location_raw = $v['location_raw'];
 	if($type == 1) {//Data from GPS
         	saveGPSBasedData($lat,$lng, $acc, $extra, $status, $provider, $last_updated, $location_raw);
-	} elsee { //Data from GSM
+	} else { //Data from GSM
         	saveGSMBasedData($lat,$lng, $acc, $extra, $status, $provider, $last_updated, $location_raw);
 	}
     }
