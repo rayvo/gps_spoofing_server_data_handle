@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="<?php
-                                        if(isset($_SESSION['username'])) {
+                                        if(isset($_SESSION['email'])) {
                                             echo 'main.php';
                                         } else {
                                             echo 'index.php';
@@ -30,14 +30,14 @@
         <h1 class="text-info">DATA TESTING SYSTEM</h1>
         <div>
             <?php
-                if(isset($_SESSION['username'])) {
-                    $fullname = $_SESSION['lastname'].$_SESSION['firstname'];
+                if(isset($_SESSION['email'])) {
+                    $name = $_SESSION['name'];
                     echo '<form class="navbar-form" action="includes/db_logout.php" method="POST">
-                                <h6 class="text-white bg-dark" style="padding-top: 5px">Hi '.$fullname.', Welcome to our system!</h6>
+                                <h6 class="text-white bg-dark" style="padding-top: 5px">Hi '.$name.', Welcome to our data testing system!</h6>
                                 <button class="btn btn-primary" type="submit" name="submit">Logout</button></form>';
                 } else {
                     echo ' <form class="navbar-form" action="includes/db_login.php" method="POST">
-                                <input  type="text" name="uid" placeholder="Username or Email"/>
+                                <input  type="text" name="email" placeholder="Email"/>
                                 <input  type="password" name="password" placeholder="Password"/>
                                 <button class="btn btn-primary" type="submit" name="submit" >Login</button></form>
                               <h6 class="text-white bg-dark" style="padding-top: 5px">Already a member? <a class="text-warning" href="signup.php">Sign Up Now</a> </h6>';

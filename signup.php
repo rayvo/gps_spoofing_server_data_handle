@@ -9,7 +9,7 @@
                 <div class="col-sm-4">
                     <form class="signup-form" action="includes/db_signup.php" method="POST">
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="name">Gender  (*):</label>
                             <?php
                                 if(isset($_GET['customRadioInline1'])) {
@@ -46,15 +46,15 @@
                                 }
                             ?>
 
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="name">Name  (*):</label>
                             <?php
                                 if(isset($_GET['name'])) {
                                     $firstname = $_GET['name'];
-                                    echo '<input class="form-control" type="text" name="name" placeholder="예)임 태유" value="'.$name.'">';
+                                    echo '<input class="form-control" type="text" name="name" placeholder="예) 임태유" value="'.$name.'">';
                                 } else {
-                                    echo '<input class="form-control" type="text" name="name" placeholder="예) 태유">';
+                                    echo '<input class="form-control" type="text" name="name" placeholder="예) 임태유">';
                                 }
                             ?>
                         </div>

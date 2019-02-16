@@ -12,20 +12,20 @@ if(isset($_POST['submit'])) {
 
     include_once 'dbhelper.php';
 
-    $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     //Error handlers
     //Check for empty fields
-    if(empty($uid) || empty($password)) {
-        header("Location: ../index.php?login=empty&uid=$uid");
+    if(empty($email) || empty($password)) {
+        header("Location: ../index.php?login=empty&email=$email");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE username='$uid' OR email='$uid'";
+        $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
-        if($resultCheck < 1) {
-            header("Location: ../index.php?login=uid_not_found&uid=$uid");
+        if($resultCheck < 1) {            
+            header("Location: ../index.php?login=email_not_found&email=$email");
             exit();
         } else {
             if($row=mysqli_fetch_assoc($result)) {
@@ -42,9 +42,7 @@ if(isset($_POST['submit'])) {
                     exit();
                 } elseif($hashedPwdCheck == true) { //We want to check for sure
                     //Log in the user here
-                    $_SESSION['firstname']=$row['firstname'];
-                    $_SESSION['lastname']=$row['lastname'];
-                    $_SESSION['username']=$row['username'];
+                    $_SESSION['name']=$row['name'];
                     $_SESSION['email']=$row['email'];
                     header("Location: ../main.php?login=success");
                     exit();

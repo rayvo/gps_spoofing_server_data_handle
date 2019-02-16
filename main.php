@@ -6,14 +6,14 @@ include_once 'includes/dbhelper.php';
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pagination</title>
+	<title>Data Checking</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 <body>
 	
 	<?php
-        $all_data = $conn->query("SELECT * FROM users");
+        $all_data = $conn->query("SELECT * FROM gps_data");
 		$num_rows = $all_data->num_rows;
 
 		$per_page = 7;
@@ -29,7 +29,7 @@ include_once 'includes/dbhelper.php';
 			$offset = ($per_page * $current_page) - $per_page;
 		}
 
-		$page_data = $conn->query("SELECT * FROM users LIMIT ".$per_page. " OFFSET ".$offset);
+		$page_data = $conn->query("SELECT * FROM gps_data LIMIT ".$per_page. " OFFSET ".$offset);
 	 ?>
 
 	<section>
@@ -38,51 +38,33 @@ include_once 'includes/dbhelper.php';
 			<div class="row">
 
 				<div class="col-sm-12">
-					<h2 class="text-center">Table User</h2>
+					<h2 class="text-center">Table GPS_DATA</h2>
 					<table class="table table-bordered">
 						<thead>
                             <tr>
-                                <th>#</th>
-                                <th>성</th>
-                                <th>이름</th>
-                                <th>ID</th>
-                                <th>생일</th>
-                                <th>연락처</th>
-                                <th>이메일</th>
-                                <th>주소</th>
-                                <th>성별</th>
-                                <th>등록일</th>
+                                <th>id</th>
+                                <th>lat</th>
+                                <th>lng</th>
+                                <th>accuracy</th>
+                                <th>extra</th>
+                                <th>status</th>
+                                <th>provider</th>
+                                <th>last_updated</th>
+                                <th>location_raw</th>                                
                             </tr>
 						</thead>
 						<tbody>
                             <?php while($row=$page_data->fetch_assoc()):?>
                                 <tr>
                                     <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row['lastname']; ?></td>
-                                    <td><?php echo $row['firstname']; ?></td>
-                                    <td><?php echo $row['username']; ?></td>
-                                    <td><?php
-                                        $birthday = $row['birthday'];
-                                        if (strcmp(substr($birthday, 0, 4),"0000") == 0) {
-                                            echo "TBD";
-                                        } else {
-                                            echo $row['birthday'];
-                                        }
-                                        ?>
-                                    </td>
-                                    <td><?php
-                                        $cellphone = $row['cellphone'];
-                                        if (strlen($cellphone) > 4) {
-                                            echo substr_replace($cellphone, "xxxx", strlen($cellphone)-4);
-                                        } else {
-                                            echo "TBD";
-                                        }
-                                        ?>
-                                    </td>
-                                    <td><?php echo $row['email']; ?></td>
-                                    <td><?php echo $row['address']; ?></td>
-                                    <td><?php echo $row['gender']; ?></td>
-                                    <td><?php echo $row['reg_date']; ?></td>
+                                    <td><?php echo $row['lat']; ?></td>
+                                    <td><?php echo $row['lng']; ?></td>
+                                    <td><?php echo $row['accuracy']; ?></td>
+									<td><?php echo $row['extra']; ?></td>
+									<td><?php echo $row['status']; ?></td>
+									<td><?php echo $row['provider']; ?></td>
+									<td><?php echo $row['last_updated']; ?></td>
+									<td><?php echo $row['location_raw']; ?></td>                                    
                                 </tr>
                             <?php endwhile; ?>
 
@@ -132,9 +114,7 @@ include_once 'includes/dbhelper.php';
 				</div>
 			</div>
             <div class="col-sm-12" >
-                <button class="btn btn-primary" onclick="location.href='server.php'">Export To Excel</button>
-                <button class="btn btn-primary" onclick="location.href='import.php'">Import More Data</button>
-                <button class="btn btn-primary" onclick="location.href='signup.php'">Insert One User</button>
+                <button class="btn btn-primary" onclick="location.href='gsm_data.php'">GSM_DATA</button>                
             </div>
 		</div>
 	</section>

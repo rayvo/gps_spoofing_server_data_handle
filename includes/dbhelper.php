@@ -10,14 +10,15 @@ require "ClubDevice.php";
 require "UserTracking.php";
 
 //Database Connection Information
-$dbServername = "localhost";
+//$dbServername = "localhost";
+$dbServername = "210.105.48.120";
 $dbUsername = "root";
 $dbPassword = "c210120f";
 
 //$dbUsername = "clubadmin";
 //$dbPassword = "c123456f";
 
-$dbName = "clubfit";
+$dbName = "gps_spoofing";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 
